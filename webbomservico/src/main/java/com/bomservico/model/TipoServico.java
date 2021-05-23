@@ -5,28 +5,24 @@ import javax.validation.constraints.NotNull;
 
 public class TipoServico {
 
-	@NotNull
-	private int id;
-
-	@NotNull
-	@NotBlank
+	private Long id;
 	private String nome;
 
 	public TipoServico() {
 		super();
 	}
 
-	public TipoServico(@NotNull int id, @NotNull @NotBlank String nome) {
+	public TipoServico(Long id, String nome) {
 		super();
 		this.id = id;
 		this.nome = nome;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -1,50 +1,30 @@
 package com.bomservico.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
-@Entity
-@Table(name = "user")
 public class Usuario {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
 	private Long id;
-
-	@NotNull
-	@NotBlank
-	@Column(name = "nome")
 	private String nome;
-	
-	@NotNull
-	@NotBlank
-	@Column(name = "login")
 	private String login;
-
-	@NotNull
-	@NotBlank
-	@Column(name = "senha")
 	private String senha;
 
 	// Srpign Security
 	private String role;
 	private boolean enabled;
 
-	@Deprecated
 	public Usuario() {
 	}
 
+	public Usuario(Long id, String nome, String login, String senha) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.login = login;
+		this.senha = senha;
+	}
 
 
-	public Usuario(@NotNull @NotBlank String nome, @NotNull @NotBlank String login, @NotNull @NotBlank String senha) {
+	public Usuario(String nome, String login, String senha) {
 		super();
 		this.nome = nome;
 		this.login = login;

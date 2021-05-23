@@ -44,7 +44,7 @@ public class TipoServicoDao {
         try
         {
           if (rs.next())
-            c=new TipoServico(rs.getInt("id"),rs.getString("nome"));
+            c=new TipoServico(rs.getLong("id"),rs.getString("nome"));
         }
         catch(Exception e){System.out.println(e);}
         con.fecharConexao();
@@ -63,7 +63,7 @@ public class TipoServicoDao {
         {
           while(rs.next())
              lista.add(
-            		 new TipoServico(rs.getInt("id"),rs.getString("nome")));
+            		 new TipoServico(rs.getLong("id"),rs.getString("nome")));
         }
         catch(Exception e){System.out.println(e);}
         con.fecharConexao();
