@@ -21,10 +21,10 @@ public class ImagemAnuncio {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getAnuncio_id() {
+	public int getAnuncioId() {
 		return anuncio_id;
 	}
-	public void setAnuncio_id(int anuncio_id) {
+	public void setAnuncioId(int anuncio_id) {
 		this.anuncio_id = anuncio_id;
 	}
 	public String getPath() {

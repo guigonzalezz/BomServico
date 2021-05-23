@@ -36,7 +36,7 @@ public class MeusAmigosServiceController
 	    for (Pessoa pe : Singleton.equipe)
 	         if (pe.getId()==id) p=pe;
 
-	    return new ResponseEntity<>(p,HttpStatus.OK);	
+	    return new ResponseEntity<>(p,HttpStatus.OK);
 	}
 
 	@RequestMapping(value="/apagar")	
