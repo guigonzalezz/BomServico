@@ -1,0 +1,66 @@
+<html>
+<head th:replace="~{base :: head}">
+
+</head>
+
+<body>
+	<div th:replace="~{base :: logo}">
+	</div>
+
+
+	<div class="container">
+		<div th:replace="~{base :: titulo('Novo Anuncio')}"></div>
+
+		<div class="card mt-3">
+			<form th:object="${requisicaoNovoAnuncio}" class="card-body"
+				th:action="@{/anuncio/novo}" method="POST">
+
+				<div class="form-group">
+					<label for="titulo">Titulo</label> <input th:field="*{titulo}"
+						th:errorclass="is-invalid" class="form-control"
+						placeholder="titulo do anuncio" /> <small>Informa qual o
+						titulo do anuncio.</small>
+					<div class="invalid-feedback" th:errors="*{titulo}">Erros do
+						titulo do anuncio</div>
+				</div>
+
+				<div class="form-group">
+					<label for="descricao">Descricao</label>
+					<textarea th:field="*{descricao}" th:errorclass="is-invalid"
+						class="form-control" placeholder="descricao do anuncio"></textarea>
+					<small>Informe tudo sobre o seu serviço, como data e hora,
+						local caso necessário e valores.</small>
+					<div class="invalid-feedback" th:errors="*{descricao}">Erros
+						da descricao do anuncio</div>
+				</div>
+
+				<div class="form-group">
+					<label for="tipo_servico">Tipo de serviço</label> <select
+						th:field="*{tipo_servico}" th:errorclass="is-invalid"
+						name="tipo_servico" class="form-control">
+						<option value="0"></option>
+						<option th:each="tipoServico: ${tipos_servicos}"
+							th:value="${tipoServico.id}" th:text="${tipoServico.nome}"></option>
+					</select>
+					<div class="invalid-feedback" th:errors="*{tipo_servico}">
+						Erros do tipo de servico do anuncio</div>
+				</div>
+
+				<div class="form-group">
+					<label for="imagem">Imagem</label> <input th:field="*{imagem}"
+						th:errorclass="is-invalid" class="form-control"
+						placeholder="url da imagem" /> <small>Copie a url de uma
+						boa imagem sobre o serviço e cole aqui para ajudar a conseguir
+						contratantes.</small>
+					<div class="invalid-feedback" th:errors="*{imagem}">Erros da
+						imagem do anuncio</div>
+				</div>
+
+				<button class="btn btn-primary" type="submit">Cadastrar</button>
+			</form>
+		</div>
+	</div>
+
+</body>
+
+</html>

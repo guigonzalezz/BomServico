@@ -1,0 +1,58 @@
+<html>
+<head th:replace="~{base :: head}">
+
+</head>
+
+<body>
+	<div th:replace="~{base :: logo}"></div>
+
+
+	<div class="container">
+		<div th:replace="~{base :: titulo('Tela Inicial')}"></div>
+
+
+		<nav class="navbar navbar-expand navbar-light bg-light d-flex align-items-center justify-content-between mb-3">
+			<p>Buscar:</p>
+			<select th:onchange="javascript:location.href = '/home/' + this.value;" 
+			name="tipo_servico" class="form-control">
+				<option value=""></option>
+				<option th:each="tipoServico: ${tipos_servicos}" th:value="${tipoServico.id}" th:text="${tipoServico.nome}"></option>
+			</select>
+			
+			<a href="/home"><button
+					class="btn btn-outline-secondary my-2 my-sm-0">Listar Todos</button></a>
+		</nav>
+
+
+		<div class="card mb-3" th:each="anuncio : ${anuncios}">
+			<div class="card-header" th:text="${anuncio.titulo}">Titulo do
+				anuncio</div>
+
+			<div class="card-body">
+				<div class="row">
+					<div class="col-12 col-sm-8 mb-3">
+						<div>Descricao</div>
+						<div class="mb-3">
+							<textarea class="form-control" th:text="${anuncio.descricao}">descricao do anuncio</textarea>
+						</div>
+
+						<div>Tipo do Servico</div>
+						<div class="mb-3" th:text="${anuncio.tipo_servico.nome}"></div>
+
+						
+
+					</div>
+
+					<div class="col-12 col-sm-4">
+						<div>
+							<img class="img-thumbnail"
+								src="https://kinsta.com/pt/wp-content/uploads/sites/3/2020/06/rectangulo-medio.png" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
