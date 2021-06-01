@@ -1,0 +1,46 @@
+<html>
+<head th:replace="~{base :: head}">
+
+</head>
+
+<body>
+	<div th:replace="~{base :: logo}"></div>
+
+
+	<div class="container">
+		<div th:replace="~{base :: titulo('Perfil')}"></div>
+
+
+		
+
+		<div class="card mb-3" >
+			<div class="card-header" >Dados do Usuário</div>
+
+			<div class="card-body">
+				<div class="row">
+					<div class="col-12 col-sm-8 mb-3">
+						<div>Username:</div>
+						<div class="mb-3" th:text="${usuario.username}"></div>
+
+						<div>Password</div>
+						<div class="mb-3" th:text="${usuario.password}"></div>
+						
+						<div>Status</div>
+						<div class="mb-3" th:text="${usuario.enabled} ? 'Disponível' : 'Indisponível'"></div>
+
+
+					</div>
+
+					<div class="col-12 col-sm-4">
+						<div>
+							<img class="img-thumbnail"
+								src="http://oliveiracardoso.com.br/wp-content/uploads/2016/05/icone-perfil.png" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

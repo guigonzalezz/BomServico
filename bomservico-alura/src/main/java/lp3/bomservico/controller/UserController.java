@@ -12,8 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lp3.bomservico.model.Anuncio;
 import lp3.bomservico.model.TipoServico;
+import lp3.bomservico.model.User;
 import lp3.bomservico.service.AnuncioService;
 import lp3.bomservico.service.TipoServicoService;
+import lp3.bomservico.service.UserService;
 
 @Controller
 @RequestMapping("usuario")
@@ -24,7 +26,16 @@ public class UserController {
 	private AnuncioService anuncioService;
 	@Autowired
 	private TipoServicoService tipoServicoService;
+	@Autowired
+	private UserService userService;
 	
+	@GetMapping("perfil")
+	public ModelAndView perfil(Principal principal) {
+		ModelAndView mv = new ModelAndView("usuario/perfil");
+		User usuario = userService.buscarPorUsername(principal.getName());
+		mv.addObject("usuario", usuario);
+		return mv;
+	}
 	
 	@GetMapping("anuncio")
 	public ModelAndView home(Principal principal) {

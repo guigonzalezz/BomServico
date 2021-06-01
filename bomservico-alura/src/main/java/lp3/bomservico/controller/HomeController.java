@@ -38,6 +38,14 @@ public class HomeController {
 		return mv;
 	}
 	
+	@GetMapping("/anuncio/{id}")
+	public ModelAndView anuncio(@PathVariable("id")int anuncio_id) {
+		ModelAndView mv = new ModelAndView("anuncio");
+		Anuncio anuncio = anuncioService.buscaAnuncioId((long)anuncio_id);
+		mv.addObject("anuncio",anuncio);
+		return mv;
+	}
+	
 	@GetMapping("/{tipo_servico}")
 	public ModelAndView listaAnuncioTipoServico(@PathVariable("tipo_servico")int tipo_servico_id) {
 		ModelAndView mv = new ModelAndView("home");

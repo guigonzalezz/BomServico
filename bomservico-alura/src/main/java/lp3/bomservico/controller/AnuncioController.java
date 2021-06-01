@@ -75,7 +75,6 @@ public class AnuncioController {
 				tipoServicoService.buscarPorId((long) requisicaoNovoAnuncio.getTipo_servico()),
 				usuario);
 		return mv;// APOS INSERIR REDIRECIONA PARA
-
 	}
 
 

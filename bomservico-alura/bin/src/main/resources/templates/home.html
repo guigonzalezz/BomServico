@@ -24,7 +24,7 @@
 		</nav>
 
 
-		<div th:onclick="'window.location.href = \'' + @{/home/anuncio/{id}(id=${anuncio.id})} + '\''" class="card mb-3" th:id="${anuncio.id}" th:each="anuncio : ${anuncios}">
+		<div class="card mb-3" th:each="anuncio : ${anuncios}">
 			<div class="card-header" th:text="${anuncio.titulo}">Titulo do
 				anuncio</div>
 
@@ -33,11 +33,13 @@
 					<div class="col-12 col-sm-8 mb-3">
 						<div>Descricao</div>
 						<div class="mb-3">
-							<textarea disabled class="form-control" th:text="${anuncio.descricao}">descricao do anuncio</textarea>
+							<textarea class="form-control" th:text="${anuncio.descricao}">descricao do anuncio</textarea>
 						</div>
 
 						<div>Tipo do Servico</div>
 						<div class="mb-3" th:text="${anuncio.tipo_servico.nome}"></div>
+
+						
 
 					</div>
 

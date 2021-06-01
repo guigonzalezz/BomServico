@@ -21,9 +21,9 @@ public class AnuncioService {
 	private AnuncioRepository anuncioRepository;
 	
 	
-	public void salvar(String titulo, String descricao,TipoServico tipo_servico,User usuario) {
+	public Anuncio salvar(String titulo, String descricao,TipoServico tipo_servico,User usuario) {
 		Anuncio anuncio = new Anuncio(titulo, descricao, usuario, tipo_servico);
-		anuncioRepository.save(anuncio);
+		return anuncioRepository.save(anuncio);
 	}
 	
 	public void atualizar(long id, String titulo, String descricao,TipoServico tipo_servico) {
@@ -70,6 +70,10 @@ public class AnuncioService {
 //				+ anuncio.getTitulo() + " - "
 //				+ anuncio.getUsuario().getNome()
 //				));
+	}
+	
+	public Anuncio buscaAnuncioId(long id) {
+		return anuncioRepository.findById(id).get();
 	}
 	
 	public void buscaAnuncioLikeTitulo(String titulo) {
