@@ -13,7 +13,6 @@ public class TipoServicoService {
 	@Autowired
 	private TipoServicoRepository tipoServicoRepository;
 	
-	
 	public TipoServico salvar(String nome) {
 		TipoServico tipo_servico = new TipoServico(nome);
 		return tipoServicoRepository.save(tipo_servico);

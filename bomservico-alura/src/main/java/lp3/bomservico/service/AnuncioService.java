@@ -86,6 +86,10 @@ public class AnuncioService {
 		return anuncioRepository.findByTipoServico(busca);
 	}
 	
+	public List<Anuncio> buscaAnuncioPorTipoServicoId(long id) {
+		return anuncioRepository.findByTipoServicoId(id);
+	}
+	
 	public List<Anuncio> buscaAnuncioPorTipoServicoEUsuario(String busca, String username) {
 		return anuncioRepository.findByTipoServicoAndUsername(busca, username);
 	}

@@ -20,7 +20,7 @@ public class Anuncio{
 	private String descricao;
 	private String titulo;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	private User user;
 	
 	@ManyToOne //Cardianilidade entre as tabelas

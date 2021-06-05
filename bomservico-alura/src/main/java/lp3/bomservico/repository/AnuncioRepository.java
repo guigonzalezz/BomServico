@@ -22,4 +22,7 @@ public interface AnuncioRepository extends PagingAndSortingRepository<Anuncio, L
 	
 	@Query("select a from Anuncio a join a.user u where u.username = :username and a.tipo_servico.nome = :tipo_servico")
 	List<Anuncio> findByTipoServicoAndUsername(@Param("tipo_servico")String busca, @Param("username") String username);
+	
+	@Query("select a from Anuncio a where a.tipo_servico.id = ?1")
+	List<Anuncio> findByTipoServicoId(long id);
 }
