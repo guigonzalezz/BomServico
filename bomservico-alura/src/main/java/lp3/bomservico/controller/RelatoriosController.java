@@ -30,8 +30,8 @@ public class RelatoriosController {
     public ResponseEntity<byte[]> geraRelatorio (@RequestParam(value="relatorio") String relatorio) throws IOException   
     {
         // path referencia o caminho relativo (realpath) para a pasta que se encontra os .jasper
-        String path = resourceLoader.getResource("classpath:reports/teste.jasper").getURI().getPath();
-        byte[] contents = gerarRelatorioPDF("seu select...", path);
+        String path = resourceLoader.getResource("classpath:reports/anuncios.jasper").getURI().getPath();
+        byte[] contents = gerarRelatorioPDF("SELECT a.id as id, a.descricao as descricao, a.titulo as titulo, c.nome as categoria, a.user_username as user FROM anuncio as a INNER JOIN tipo_servico as c ON a.tipo_servico_id = c.id", path);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
