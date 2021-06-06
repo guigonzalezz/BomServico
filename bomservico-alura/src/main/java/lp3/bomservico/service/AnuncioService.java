@@ -1,5 +1,6 @@
 package lp3.bomservico.service;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,4 +94,9 @@ public class AnuncioService {
 	public List<Anuncio> buscaAnuncioPorTipoServicoEUsuario(String busca, String username) {
 		return anuncioRepository.findByTipoServicoAndUsername(busca, username);
 	}
+	
+	public List<Anuncio> relatorio()
+    {
+        return anuncioRepository.getRelatorio();
+    }
 }

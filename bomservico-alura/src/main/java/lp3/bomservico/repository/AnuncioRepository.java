@@ -1,5 +1,6 @@
 package lp3.bomservico.repository;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
@@ -25,4 +26,7 @@ public interface AnuncioRepository extends PagingAndSortingRepository<Anuncio, L
 	
 	@Query("select a from Anuncio a where a.tipo_servico.id = ?1")
 	List<Anuncio> findByTipoServicoId(long id);
+	
+	@Query("select a from Anuncio a") 
+	List<Anuncio> getRelatorio();
 }
