@@ -45,7 +45,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(); 
-		
+		//Como cadastrar um novo usuário ao iniciar o sistema
 //		UserDetails user = 
 //				User.builder()
 //					.username("lucas")

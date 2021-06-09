@@ -60,18 +60,11 @@ public class AdminController {
 	@Transactional
 	public String deletarTipoServico(@PathVariable String id) {
 		String msg = "Deletado com sucesso!";
-		//ModelAndView mv = new ModelAndView("admin/painel");
 		List<Anuncio> anuncios = anuncioService.buscaAnuncioPorTipoServicoId(Long.parseLong(id));
 		if(anuncios == null || anuncios.isEmpty())
-		{
 			tipoServicoService.deletar(Long.parseLong(id));
-			//mv.addObject("msg", msg);
-		}
-		else {
+		else 
 			msg = "Não é possível deletar, tipo servico vinculado a um anuncio!";
-			//mv.addObject("msg","Não é possível deletar, tipo servico vinculado a um anuncio!");
-		}
-			
 		return msg;
 	}
 	

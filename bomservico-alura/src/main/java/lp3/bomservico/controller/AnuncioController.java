@@ -34,22 +34,6 @@ public class AnuncioController {
 	@Autowired
 	private UserService userService;
 
-	/*
-	 * @GetMapping("/home") public String home(Model model) { Iterable<Anuncio>
-	 * anuncios = anuncioService.listar(); model.addAttribute("anuncios", anuncios);
-	 * return "home"; }
-	 */
-	// DE AMBAS AS FORMAS FUNCIONAM
-//	@GetMapping("meusanuncios")
-//	public ModelAndView home() {
-//		String username = SecurityContextHolder.getContext().getAuthentication().getName();
-//		Iterable<Anuncio> anuncios = anuncioService.findAllByUsuario(username);
-//		ModelAndView mv = new ModelAndView("anuncio/meusanuncios");
-//		mv.addObject("anuncios", anuncios);
-//		return mv;
-//	}
-
-	// @RequestMapping(method = RequestMethod.GET, value="formulario")
 	@GetMapping("formulario")
 	public ModelAndView formulario(RequisicaoNovoAnuncio requisicaoNovoAnuncio) {
 		Iterable<TipoServico> tipos_servicos = tipoServicoService.listar();
@@ -58,7 +42,6 @@ public class AnuncioController {
 		return mv;
 	}
 
-	// @RequestMapping(method = RequestMethod.POST, value="novo")
 	@PostMapping("novo")
 	public ModelAndView novo(@Valid RequisicaoNovoAnuncio requisicaoNovoAnuncio, BindingResult result) {
 		Iterable<TipoServico> tipos_servicos = tipoServicoService.listar();
@@ -74,7 +57,7 @@ public class AnuncioController {
 		anuncioService.salvar(requisicaoNovoAnuncio.getTitulo(), requisicaoNovoAnuncio.getDescricao(),
 				tipoServicoService.buscarPorId((long) requisicaoNovoAnuncio.getTipo_servico()),
 				usuario);
-		return mv;// APOS INSERIR REDIRECIONA PARA
+		return mv;
 	}
 
 

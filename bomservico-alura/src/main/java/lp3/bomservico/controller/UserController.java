@@ -54,10 +54,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("usuario/home");
 		boolean verificaArg = false;
 		String tipo_servico = "";
-		
 		Iterable<TipoServico> tipos_servicos = tipoServicoService.listar();
-		
-		
 		for(TipoServico tipo : tipos_servicos) {
 			if(tipo.getId() == (long)tipo_servico_id) {
 				tipo_servico = tipo.getNome();
@@ -66,11 +63,9 @@ public class UserController {
 		}
 		
 		Iterable<Anuncio> anuncios = anuncioService.buscaAnuncioPorTipoServicoEUsuario(tipo_servico, principal.getName());
-		
 		if(!verificaArg ){
 			mv = new ModelAndView("redirect:/usuario/home");
 		}
-		
 		mv.addObject("tipos_servicos", tipos_servicos);
 		mv.addObject("anuncios", anuncios);
 		return mv;

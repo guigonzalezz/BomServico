@@ -29,10 +29,8 @@ public class HomeController {
 	@GetMapping
 	public ModelAndView home(Principal principal) {
 		ModelAndView mv = new ModelAndView("home");
-		
 		Iterable<Anuncio> anuncios = anuncioService.listar();
 		Iterable<TipoServico> tipos_servicos = tipoServicoService.listar();
-		
 		mv.addObject("tipos_servicos", tipos_servicos);
 		mv.addObject("anuncios", anuncios);
 		return mv;
@@ -51,10 +49,7 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView("home");
 		boolean verificaArg = false;
 		String tipo_servico = "";
-		
 		Iterable<TipoServico> tipos_servicos = tipoServicoService.listar();
-		
-		
 		for(TipoServico tipo : tipos_servicos) {
 			if(tipo.getId() == (long)tipo_servico_id) {
 				tipo_servico = tipo.getNome();
@@ -63,11 +58,9 @@ public class HomeController {
 		}
 		
 		Iterable<Anuncio> anuncios = anuncioService.buscaAnuncioPorTipoServico(tipo_servico);
-		
 		if(!verificaArg ){
 			mv = new ModelAndView("redirect:/home");
 		}
-		
 		mv.addObject("tipos_servicos", tipos_servicos);
 		mv.addObject("anuncios", anuncios);
 		return mv;

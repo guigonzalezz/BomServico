@@ -23,7 +23,7 @@ public class Anuncio{
 	@ManyToOne
 	private User user;
 	
-	@ManyToOne //Cardianilidade entre as tabelas
+	@ManyToOne
 	private TipoServico tipo_servico;
 
 

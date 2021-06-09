@@ -34,22 +34,19 @@ public class RelatoriosController {
     @RequestMapping(value="/geraRelatorio", method=RequestMethod.GET)
     public ResponseEntity<byte[]> geraRelatorio () throws IOException   
     {
-        // path referencia o caminho relativo (realpath) para a pasta que se encontra os .jasper
-        String path = resourceLoader.getResource("classpath:reports/anuncios2.jasper").getURI().getPath();
+    	String path = resourceLoader.getResource("classpath:reports/anuncios2.jasper").getURI().getPath();
         byte[] contents = gerarRelatorioPDF("SELECT a.id as id, a.descricao as descricao, a.titulo as titulo, c.nome as categoria, a.user_username as user FROM anuncio as a INNER JOIN tipo_servico as c ON a.tipo_servico_id = c.id", path);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
-        //headers.setCacheControl("must-revalidate, post-check=0, pre-check=0");
         ResponseEntity<byte[]> response = new ResponseEntity<>(contents, headers, HttpStatus.OK);
         return response;
     }
         
     private byte[] gerarRelatorioPDF(String sql, String relat)
     {   byte[] pdf;
-        try { //sql para obter os dados para o relatorio
+        try { 
             JasperPrint jasperprint=null;
-//            ResultSet rs = new Conexao().consultar(sql);
             List<Anuncio> rs = anuncioService.relatorio();
             List<RequisicaoRelatorioAnuncio> rel = new ArrayList<>();
             rs.forEach(item -> {

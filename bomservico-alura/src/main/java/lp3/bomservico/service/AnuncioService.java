@@ -47,12 +47,12 @@ public class AnuncioService {
 		//Sort.by(Sort.Direction.ASC, “nome do campo”)
 		Pageable pageable = PageRequest.of(pagina, 6, Sort.unsorted());
 		Page<Anuncio> anuncios = anuncioRepository.findAll(pageable);
-//		anuncios.forEach(anuncio -> System.out.println(
-//				anuncio.getId() + " - " 
-//				+ anuncio.getTitulo() + " - "
-//				+ anuncio.getTipo_servico().getNome() + " - "
-//				+ anuncio.getUsuario().getNome()
-//				));
+		anuncios.forEach(anuncio -> System.out.println(
+				anuncio.getId() + " - " 
+				+ anuncio.getTitulo() + " - "
+				+ anuncio.getTipo_servico().getNome() + " - "
+				+ anuncio.getUsuario().getUsername()
+				));
 		System.out.println("Pagina Atual: " + anuncios.getNumber());
 		System.out.println("Total elementos: " + anuncios.getTotalElements());
 	}
@@ -63,24 +63,16 @@ public class AnuncioService {
 	
 	//BUSCAS
 	
-	public void buscaAnuncioTitulo(String titulo) {
-		List<Anuncio> anuncios = anuncioRepository.findByTitulo(titulo);
-//		System.out.println("***"+titulo+"***");
-//		anuncios.forEach(anuncio -> System.out.println(
-//				anuncio.getId() + " - " 
-//				+ anuncio.getTitulo() + " - "
-//				+ anuncio.getUsuario().getNome()
-//				));
+	public List<Anuncio> buscaAnuncioTitulo(String titulo) {
+		return anuncioRepository.findByTitulo(titulo);
 	}
 	
 	public Anuncio buscaAnuncioId(long id) {
 		return anuncioRepository.findById(id).get();
 	}
 	
-	public void buscaAnuncioLikeTitulo(String titulo) {
-		
-		List<Anuncio> anuncios = anuncioRepository.findByTituloLikeOrTituloLikeOrTituloLike("%"+titulo+"%","%"+titulo,titulo+"%");
-	
+	public List<Anuncio> buscaAnuncioLikeTitulo(String titulo) {
+		return anuncioRepository.findByTituloLikeOrTituloLikeOrTituloLike("%"+titulo+"%","%"+titulo,titulo+"%");
 	}
 	
 	public Iterable<Anuncio> buscaAnuncioPorTipoServico(String busca) {
