@@ -41,6 +41,8 @@
 			<nav class="nav ">
 				<a class="nav-link active" th:href="@{/home}">Home</a>
 				<a class="nav-link" th:href="@{/usuario/anuncio}">Meus Anuncios</a>
+				<a class="nav-link" th:href="@{/usuario/perfil}">Perfil</a>
+				<a class="nav-link" sec:authorize="hasRole('ROLE_ADM')" th:href="@{/admin/painel}">Painel Admin</a>
 			</nav>
 		</div>
 	</div>

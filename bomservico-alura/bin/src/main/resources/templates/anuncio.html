@@ -4,23 +4,14 @@
 </head>
 
 <body>
+	<div th:replace="~{base :: logo}"></div>
 
-	<div th:replace="~{base :: logo}">
-	</div>
 
 	<div class="container">
-		<div th:replace="~{base :: titulo('Meus Anuncios')}"></div>
+		<div th:replace="~{base :: titulo('Anuncio')}"></div>
 
-		<nav
-			class="navbar navbar-expand navbar-light bg-light d-flex flex-row-reverse mb-3">
-			<a href="/anuncio/formulario"><button
-					class="btn btn-outline-secondary my-2 my-sm-0">Novo</button></a>
-		</nav>
-
-
-		<div class="card mb-3" th:each="anuncio : ${anuncios}">
-			<div class="card-header" th:text="${anuncio.titulo}">Titulo do
-				anuncio</div>
+		<div class="card mb-3" >
+			<div class="card-header" th:text="${anuncio.titulo}">titulo anuncio</div>
 
 			<div class="card-body">
 				<div class="row">
@@ -33,8 +24,6 @@
 						<div>Tipo do Servico</div>
 						<div class="mb-3" th:text="${anuncio.tipo_servico.nome}"></div>
 
-						<div>Usuario</div>
-						<div class="mb-3" th:text="${anuncio.user.username}"></div>
 
 					</div>
 

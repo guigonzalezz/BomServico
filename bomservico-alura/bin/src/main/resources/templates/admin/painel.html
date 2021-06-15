@@ -1,0 +1,104 @@
+<html>
+<head th:replace="~{base :: head}">
+
+</head>
+
+<body>
+	<div th:replace="~{base :: logo}"></div>
+
+
+	<div class="container">
+		<div th:replace="~{base :: titulo('Painel Administrativo')}"></div>
+
+		<nav
+			class="navbar navbar-expand navbar-light bg-light d-flex align-items-center justify-content-between  mb-3">
+			<form th:object="${requisicaoNovoTipoServico}" method="POST"
+				th:action="@{/admin/novo}" class="d-flex align-items-center mt-3">
+
+				<div class="form-group">
+					<input th:field="*{nome}" placeholder="Criar nova categoria..."
+						class="form-control" />
+
+				</div>
+				<button type="submit" class="btn btn-outline-secondary my-2 my-sm-0">Criar</button>
+
+			</form>
+
+			<div class="ml-2">
+			    <button type="button" th:onclick="javascript:location.href = '/geraRelatorio'"  class="btn btn-outline-secondary">Relatorio</button>
+			</div>
+		</nav>
+		
+		<div class="jumbotron mb-0 mt-2">
+			<h1 class="display-6" >Controle Tipo de Serviços</h1>
+		</div>
+		<div class="card p-3">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">ID</th>
+						<th scope="col">Tipo de Serviço</th>
+						<th scope="col">Apagar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr scope="row" th:each="tipoServico : ${tipos_servicos}">
+						<td th:text="${tipoServico.id}"></td>
+						<td th:text="${tipoServico.nome}"></td>
+						<td th:onclick="'deletarTipoServico(\'' + ${tipoServico.id} + '\');'"
+							th:value="${tipoServico.id}">X</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="jumbotron mb-0 mt-2">
+			<h1 class="display-6" >Controle Anuncios</h1>
+		</div>
+		<div class="card p-3">
+			<table class="table">
+				<thead> 
+					<tr>
+						<th scope="col">ID</th>
+						<th scope="col">Titulo</th>
+						<th scope="col">Tipo Serviço</th>
+						<th scope="col">Usuario</th>
+						<th scope="col">Apagar</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr scope="row" th:each="anuncio : ${anuncios}">
+						<td th:text="${anuncio.id}"></td>
+						<td th:text="${anuncio.titulo}"></td>
+						<td th:text="${anuncio.tipo_servico.nome}"></td>
+						<td th:text="${anuncio.usuario.username}"></td>
+						<td th:onclick="'deletarAnuncio(\'' + ${anuncio.id} + '\');'"
+							th:value="${anuncio.id}">X</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<script>
+		function deletarTipoServico(id){
+			axios
+				.delete('http://localhost:8080/admin/tipoServico/deletar/' + id)
+				.then(response => {
+					alert(response.data);
+					location.reload();
+				})
+		}
+		
+		function deletarAnuncio(id){
+			axios
+			.delete('http://localhost:8080/admin/anuncio/deletar/' + id)
+			.then(response => {
+				alert(response.data);
+				location.reload();
+			})
+		}
+	</script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+
+</html>

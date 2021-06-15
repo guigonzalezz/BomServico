@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -21,6 +22,8 @@ public class User {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="user", fetch= FetchType.LAZY)
 	private List<Anuncio> anuncios;
 	
+    private String role;
+	
 	public User() {
 		
 	}
@@ -28,6 +31,14 @@ public class User {
 	public User(String username, String password) {
 		this.username = username;
 		this.password = password;
+	}
+	
+	
+	public User(String username, String password, Boolean enabled, String role) {
+		this.username = username;
+		this.password = password;
+		this.enabled = enabled;
+		this.role = role;
 	}
 	
 
@@ -54,6 +65,14 @@ public class User {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	

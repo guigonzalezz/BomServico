@@ -1,0 +1,101 @@
+<html>
+<head th:replace="~{base :: head}">
+
+</head>
+
+<body onload="onLoad()">
+	<div th:replace="~{base :: logo}"></div>
+
+
+	<div class="container" id="anuncio">
+		<div class="card mb-3" th:each="anuncio : ${anuncios}">
+			<div class="card-header" th:text="${anuncio.titulo}">Titulo do
+				anuncio</div>
+
+			<div class="card-body">
+				<div class="row">
+					<div class="col-12 col-sm-8 mb-3">
+						<div>Titulo</div>
+						<div class="mb-3">
+							<input class="form-control" th:value="${anuncio.titulo}"/>
+						</div>
+					</div>
+				
+					<div class="col-12 col-sm-8 mb-3">
+						<div>Descricao</div>
+						<div class="mb-3">
+							<textarea class="form-control" th:text="${anuncio.descricao}">descricao do anuncio</textarea>
+						</div>
+
+						<div>Tipo do Servico</div>
+						<div class="mb-3" th:text="${anuncio.tipo_servico.nome}"></div>
+
+					</div>
+
+					<div class="col-12 col-sm-4">
+						<div>
+							<img class="img-thumbnail"
+								src="https://kinsta.com/pt/wp-content/uploads/sites/3/2020/06/rectangulo-medio.png" />
+						</div>
+					</div>
+					
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+		
+		<script>
+			function onLoad() {
+				var app = new Vue(
+				{
+					el : '#anuncio',
+					data : {
+						anuncio : []
+					},
+					mounted () {
+						axios
+					      .get('http://localhost:8080/api/pedidos/aguardando')
+					      .then(response => {
+					    	  	response.data.forEach(pedido =>{
+					    	  		pedido.ofertaEnviada = false;
+					    	  		pedido.erros = {
+					    	  			valor: '',
+					    	  			dataDaEntrega: ''
+					    	  		}
+					    	  	})
+					    	 	this.pedidos = response.data
+					    	})
+					},
+					methods: {
+						enviarOferta: function(pedido) {
+							pedido.erros = {
+			    	  			valor: '',
+			    	  			dataDaEntrega: ''
+			    	  		};
+							
+							axios
+						      .post('http://localhost:8080/api/ofertas', {
+						    	  pedidoId: pedido.id,
+						    	  valor: pedido.valorNegociado,
+						    	  dataDaEntrega: pedido.dataDaEntrega,
+						    	  comentario: pedido.comentario
+						      })
+						      .then(response => pedido.ofertaEnviada = true)
+						      .catch(error => {
+						    	  error.response.data.errors.forEach(error => {
+						    		  pedido.erros[error.field] = error.defaultMessage;
+						    	  })
+						      })
+						} 
+					}
+				});
+			}
+		</script>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</body>
+</html>
